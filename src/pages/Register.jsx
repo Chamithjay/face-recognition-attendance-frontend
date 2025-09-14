@@ -120,85 +120,124 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-8 border border-gray-200 rounded-lg shadow-lg bg-white">
-      <h2 className="text-2xl font-bold mb-6 text-center">Register Student</h2>
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">
-            Student ID
-          </label>
-          <input
-            type="text"
-            value={studentId}
-            onChange={(e) => setStudentId(e.target.value)}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">Name</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        <div>
-          <label className="block mb-1 font-medium text-gray-700">Video</label>
-          <input
-            type="file"
-            accept="video/*"
-            onChange={handleVideoChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        {videoPreview && (
-          <div className="mt-4 relative">
-            <video
-              src={videoPreview}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full rounded"
-              ref={videoRef}
-              onPlay={handleVideoPlay}
-              onLoadedMetadata={handleVideoPlay}
-              style={{ objectFit: "cover" }}
-              controls={false}
-            />
-            <canvas
-              ref={canvasRef}
-              className="absolute top-0 left-0 w-full h-full pointer-events-none"
-              style={{ zIndex: 2 }}
-            />
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+      <div className="max-w-lg mx-auto">
+        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">
+              Register Student
+            </h2>
+            <p className="text-gray-600">
+              Create a new student profile with video verification
+            </p>
           </div>
-        )}
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-200 disabled:opacity-50"
-        >
-          {loading ? "Registering..." : "Register"}
-        </button>
-      </form>
-      {message && (
-        <div className="text-green-600 mt-4 text-center">{message}</div>
-      )}
-      {error && <div className="text-red-600 mt-4 text-center">{error}</div>}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Student ID
+                </label>
+                <input
+                  type="text"
+                  value={studentId}
+                  onChange={(e) => setStudentId(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                  placeholder="Enter student ID"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                  placeholder="Enter full name"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200"
+                  placeholder="Enter email address"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Video
+                </label>
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={handleVideoChange}
+                  required
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-all duration-200"
+                />
+              </div>
+            </div>
+            {videoPreview && (
+              <div className="mt-6">
+                <div className="relative bg-gray-900 rounded-xl overflow-hidden shadow-lg">
+                  <video
+                    src={videoPreview}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-64 object-cover"
+                    ref={videoRef}
+                    onPlay={handleVideoPlay}
+                    onLoadedMetadata={handleVideoPlay}
+                    controls={false}
+                  />
+                  <canvas
+                    ref={canvasRef}
+                    className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                    style={{ zIndex: 2 }}
+                  />
+                </div>
+                <p className="text-sm text-gray-600 mt-2 text-center">
+                  Face detection in progress...
+                </p>
+              </div>
+            )}
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 focus:outline-none focus:ring-4 focus:ring-blue-200 transform transition-all duration-200 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+            >
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                  Registering...
+                </div>
+              ) : (
+                "Register Student"
+              )}
+            </button>
+          </form>
+          {message && (
+            <div className="mt-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-xl text-center font-medium">
+              {message}
+            </div>
+          )}
+          {error && (
+            <div className="mt-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl text-center font-medium">
+              {error}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
